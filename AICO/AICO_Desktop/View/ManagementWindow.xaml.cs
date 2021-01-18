@@ -134,7 +134,7 @@ namespace AICO_Desktop
                 reportA.ItemsSource = context.Accountings.ToList();
             }
         }
-        //=====================================================Керування звітністю
+        //=====================================================Звітність
         private void MouseUp_Report(object sender, MouseButtonEventArgs e)
         {
             try
@@ -148,6 +148,7 @@ namespace AICO_Desktop
                 reportCompA.ItemsSource = context.Computers.ToList();
             }
         }
+        
         private void Click_LoadCompToExcel(object sender, RoutedEventArgs e)
         {
             var reportData = new MaketReport().GetReport();
@@ -181,7 +182,7 @@ namespace AICO_Desktop
 
 
 
-        //=====================================================Керування обліком
+        //=========================Облік техніки
         private void Click_AddAccounting(object sender, RoutedEventArgs e)
         {
             var tmp = context.Accountings.FirstOrDefault(x => x.Computers.NamePC == comp.Text);
@@ -345,7 +346,35 @@ namespace AICO_Desktop
                 dev.Clear();
             }
         }
-        //=====================================================Керування пристроями
+
+        private void MouseUp_DepartmentA(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Department editdep = new Department();
+                editdep = departmentA.SelectedItem as Department;
+                employeA.ItemsSource = context.Employes.Where(x => x.Departments.ID == editdep.ID).ToList();
+            }
+            catch
+            {
+                departmentA.ItemsSource = context.Departments.ToList();
+            }
+        }
+
+        private void MouseUp_DeviceENUMA(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Device_ENUM editDevEnum = new Device_ENUM();
+                editDevEnum = device_ENUMA.SelectedItem as Device_ENUM;
+                deviceA.ItemsSource = context.Devices.Where(x => x.Devices_ENUM.ID == editDevEnum.ID).ToList();
+            }
+            catch
+            {
+                device_ENUMA.ItemsSource = context.Device_ENUMs.ToList();
+            }
+        }
+        //=====================================================Оргтехніка
         private void Click_AddDevice(object sender, RoutedEventArgs e)
         {
             var tmpDevice = context.Devices.FirstOrDefault(x => x.Model == model.Text);
@@ -385,29 +414,19 @@ namespace AICO_Desktop
         {
             Device newDevice = new Device();
             newDevice = device.SelectedItem as Device;
-            using (var dbContext = new EfContext())
+            using (EfContext dbContext = new EfContext())
             {
+                dbContext.Devices.Attach(newDevice);
                 newDevice.Model = model.Text;
                 newDevice.Description_1 = description1.Text;
                 newDevice.Description_2 = description2.Text;
                 newDevice.Description_3 = description3.Text;
                 newDevice.Description_4 = description4.Text;
                 newDevice.Description_5 = description5.Text;
-                if (deviceENUM.SelectedItem != null)
-                {
-                    if (dbContext.Device_ENUMs.Count() != 0)
-                        deviceENUM.ItemsSource = dbContext.Device_ENUMs.Select(x => x.Name).ToList();
-                    else
-                        deviceENUM.ItemsSource = "";
-                }
-                else
-                {
-                    var list = dbContext.Device_ENUMs.ToList();
-                    foreach (var item in list)
-                        if (item.Name == deviceENUM.SelectedItem.ToString())
-                            newDevice.Device_ENUM_ID = item.ID;
-                }
-                dbContext.Devices.Attach(newDevice);
+                var list = dbContext.Device_ENUMs.ToList();
+                foreach (var item in list)
+                    if (item.Name == deviceENUM.SelectedItem.ToString())
+                        newDevice.Device_ENUM_ID = item.ID;
                 dbContext.Entry(newDevice).State = System.Data.Entity.EntityState.Modified;
                 dbContext.SaveChanges();
             }
@@ -550,7 +569,7 @@ namespace AICO_Desktop
                 devENUM_Text.Clear();
             }
         }
-        //=====================================================Керування працівниками та підрозділами
+        //=====================================================Відділи та працівники
         private void Click_AddEmloye(object sender, RoutedEventArgs e)
         {
             var tmpUser = context.Employes.FirstOrDefault(x => x.Name == name.Text);
@@ -584,26 +603,16 @@ namespace AICO_Desktop
         {
             Employe newUser = new Employe();
             newUser = employe.SelectedItem as Employe;
-            using (var dbContext = new EfContext())
+            using (EfContext dbContext = new EfContext())
             {
+                dbContext.Employes.Attach(newUser);
                 newUser.Name = name.Text;
                 newUser.Work = work.Text;
                 newUser.Phone = phone.Text;
-                if (departmentsName.SelectedItem != null)
-                {
-                    if (context.Departments.Count() != 0)
-                        departmentsName.ItemsSource = context.Departments.Select(x => x.Name).ToList();
-                    else
-                        departmentsName.ItemsSource = "";
-                }
-                else
-                {
-                    var list = dbContext.Departments.ToList();
-                    foreach (var item in list)
-                        if (item.Name == departmentsName.SelectedItem.ToString())
-                            newUser.DepartmentID = item.ID;
-                }
-                dbContext.Employes.Attach(newUser);
+                var list = dbContext.Departments.ToList();
+                foreach (var item in list)
+                    if (item.Name == departmentsName.SelectedItem.ToString())
+                        newUser.DepartmentID = item.ID;
                 dbContext.Entry(newUser).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
@@ -735,6 +744,7 @@ namespace AICO_Desktop
             }
         }
 
+        //====================================================Додавання та редагування ПК
         private void Click_NewPC(object sender, RoutedEventArgs e)
         {
             Computer compAdd = new Computer();
@@ -798,33 +808,6 @@ namespace AICO_Desktop
             log.Content = "Зміни внесено успішно!";
             EditComp.IsEnabled = false;
         }
-        //=========================Облік техніки
-        private void MouseUp_DepartmentA(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                Department editdep = new Department();
-                editdep = departmentA.SelectedItem as Department;
-                employeA.ItemsSource = context.Employes.Where(x => x.Departments.ID == editdep.ID).ToList();
-            }
-            catch
-            {
-                departmentA.ItemsSource = context.Departments.ToList();
-            }
-        }
 
-        private void MouseUp_DeviceENUMA(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                Device_ENUM editDevEnum = new Device_ENUM();
-                editDevEnum = device_ENUMA.SelectedItem as Device_ENUM;
-                deviceA.ItemsSource = context.Devices.Where(x => x.Devices_ENUM.ID == editDevEnum.ID).ToList();
-            }
-            catch
-            {
-                device_ENUMA.ItemsSource = context.Device_ENUMs.ToList();
-            }
-        }
     }
 }
