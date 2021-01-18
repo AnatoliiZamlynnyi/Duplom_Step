@@ -1,0 +1,3 @@
+Name: DatabasePC
+Опис: Облік та інвентаризація комп'ютерів та оргтехніки організації
+Description: Accounting and inventory of computers and office equipment of the organization  (AICO)

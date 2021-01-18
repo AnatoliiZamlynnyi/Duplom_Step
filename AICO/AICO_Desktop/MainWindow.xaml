@@ -1,0 +1,78 @@
+﻿<Window x:Class="AICO_Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AICO_Desktop"
+        mc:Ignorable="d"
+        Title="Облік та інвентаризація комп'ютерної техніки організації"
+        WindowStartupLocation="CenterScreen" Width="800" Height="500">
+    <!--WindowState="Maximized"-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="135"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="135"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right">
+            <Button Name="EnterBTN" Height="30" Width="170" Click="Click_AdminLogin">Вхід для Администратора</Button>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center">
+            <Label  FontSize="16" FontWeight="Bold" Name="userPC"></Label>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left">
+            <Label FontWeight="Bold">Ім'я користувача:</Label>
+            <Label FontWeight="Bold">Ім'я комп'ютера:</Label>
+            <Label FontWeight="Bold">Операційна система:</Label>
+            <Label FontWeight="Bold">Розрядність ОС:</Label>
+            <Label FontWeight="Bold">Материнська плата:</Label>
+            <Label FontWeight="Bold">Процесор:</Label>
+            <Label FontWeight="Bold">Оперативна пам'ять:</Label>
+            <Label FontWeight="Bold">Жорсткий диск:</Label>
+            <Label FontWeight="Bold">Відеокарта:</Label>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left">
+            <Label Name="lb0"></Label>
+            <Label Name="lb1"></Label>
+            <Label Name="lb2"></Label>
+            <Label Name="lb3"></Label>
+            <Label Name="lb4"></Label>
+            <Label Name="lb5"></Label>
+            <Label Name="lb6"></Label>
+            <Label Name="lb7"></Label>
+            <Label Name="lb8"></Label>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center">
+            <Label  FontSize="16" FontWeight="Bold" Name="userPCDB"></Label>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left">
+            <Label  FontWeight="Bold">Ім'я користувача:</Label>
+            <Label  FontWeight="Bold">Ім'я комп'ютера:</Label>
+            <Label  FontWeight="Bold">Операційна система:</Label>
+            <Label  FontWeight="Bold">Розрядність ОС:</Label>
+            <Label  FontWeight="Bold">Материнська плата:</Label>
+            <Label  FontWeight="Bold">Процесор:</Label>
+            <Label  FontWeight="Bold">Оперативна пам'ять:</Label>
+            <Label  FontWeight="Bold">Жорсткий диск:</Label>
+            <Label  FontWeight="Bold">Відеокарта:</Label>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left">
+            <Label Name="_lb0"></Label>
+            <Label Name="_lb1"></Label>
+            <Label Name="_lb2"></Label>
+            <Label Name="_lb3"></Label>
+            <Label Name="_lb4"></Label>
+            <Label Name="_lb5"></Label>
+            <Label Name="_lb6"></Label>
+            <Label Name="_lb7"></Label>
+            <Label Name="_lb8"></Label>
+        </StackPanel>
+    </Grid>
+</Window>

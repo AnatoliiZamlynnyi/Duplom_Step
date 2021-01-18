@@ -1,0 +1,261 @@
+﻿<Window x:Class="AICO_Desktop.ManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AICO_Desktop"
+        mc:Ignorable="d"
+        Title="Облік та інвентаризація комп'ютерів та оргтехніки організації" 
+        WindowState="Maximized"  WindowStartupLocation="CenterScreen" Height="800" Width="1500">
+    <TabControl Name="tcSample" SelectionChanged="Selector_OnSelect">
+        <TabItem Name="one" Header="Home">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="135"></ColumnDefinition>
+                    <ColumnDefinition Width="173*"></ColumnDefinition>
+                    <ColumnDefinition Width="439*"/>
+                    <ColumnDefinition Width="135"></ColumnDefinition>
+                    <ColumnDefinition Width="612*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Left" Grid.Column="4" Margin="602,0,0,0">
+                    <Label FontSize="14" Name="log"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Column="2" Margin="61,58,0,0" Grid.RowSpan="2">
+                    <Label FontSize="16" FontWeight="Bold" Name="userPC"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Center" Margin="0,58,0,58" Grid.RowSpan="3">
+                    <Label FontWeight="Bold">Ім'я користувача:</Label>
+                    <Label FontWeight="Bold">Ім'я комп'ютера:</Label>
+                    <Label FontWeight="Bold">Операційна система:</Label>
+                    <Label FontWeight="Bold">Розрядність ОС:</Label>
+                    <Label FontWeight="Bold">Материнська плата:</Label>
+                    <Label FontWeight="Bold">Процесор:</Label>
+                    <Label FontWeight="Bold">Оперативна пам'ять:</Label>
+                    <Label FontWeight="Bold">Жорсткий диск:</Label>
+                    <Label FontWeight="Bold">Відеокарта:</Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="0,58,0,58" Grid.RowSpan="3">
+                    <Label Name="lb0"></Label>
+                    <Label Name="lb1"></Label>
+                    <Label Name="lb2"></Label>
+                    <Label Name="lb3"></Label>
+                    <Label Name="lb4"></Label>
+                    <Label Name="lb5"></Label>
+                    <Label Name="lb6"></Label>
+                    <Label Name="lb7"></Label>
+                    <Label Name="lb8"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="4" HorizontalAlignment="Left" Margin="234,58,0,0" Grid.RowSpan="2">
+                    <Label FontSize="16" FontWeight="Bold" Name="userPCDB"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" Margin="0,58,0,58" Grid.RowSpan="3">
+                    <Label FontWeight="Bold">Ім'я користувача:</Label>
+                    <Label FontWeight="Bold">Ім'я комп'ютера:</Label>
+                    <Label FontWeight="Bold">Операційна система:</Label>
+                    <Label FontWeight="Bold">Розрядність ОС:</Label>
+                    <Label FontWeight="Bold">Материнська плата:</Label>
+                    <Label FontWeight="Bold">Процесор:</Label>
+                    <Label FontWeight="Bold">Оперативна пам'ять:</Label>
+                    <Label FontWeight="Bold">Жорсткий диск:</Label>
+                    <Label FontWeight="Bold">Відеокарта:</Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" Margin="0,58,0,58" Grid.RowSpan="3">
+                    <Label Name="_lb0"></Label>
+                    <Label Name="_lb1"></Label>
+                    <Label Name="_lb2"></Label>
+                    <Label Name="_lb3"></Label>
+                    <Label Name="_lb4"></Label>
+                    <Label Name="_lb5"></Label>
+                    <Label Name="_lb6"></Label>
+                    <Label Name="_lb7"></Label>
+                    <Label Name="_lb8"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Left">
+                    <Button Name="AddComp" Height="30" Width="170" Click="Click_NewPC">Додати новий ПК</Button>
+                    <Button Name="EditComp" Height="30" Width="170" Click="Click_EditPC">Редагувати ПК</Button>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Name="two" Header="Відділи та працівники">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="Відділи підприємства:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <DataGrid Name="department" Grid.Row="0" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Dep" MouseUp="MouseUp_Dep"></DataGrid>
+                <Label Content="Працівники підприємства:" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <DataGrid Name="employe" Grid.Row="0" Grid.Column="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Employe"></DataGrid>
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Відділ:" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                        <TextBox Name="depText" Height="20" Width="325" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Name="addDep" Content="Додати відділ" Height="20" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_AddDep"></Button>
+                        <Button Name="editDep" Content="Редагувати відділ" Height="20" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_EditDep"></Button>
+                        <Button Name="deleteDep" Content="Видалити відділ" Height="20" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_DeleteDep"></Button>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2" Margin="0,50,0,0">
+                    <Label Content="Працівник:" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                        <Label Content="Ім'я:"></Label>
+                        <TextBox Name="name" Height="20" Width="370" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                        <Label Content="Посада:"></Label>
+                        <TextBox Name="work" Height="20" Width="370" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                        <Label Content="Телефон:"></Label>
+                        <TextBox Name="phone" Height="20" Width="370" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                        <Label Content="Відділ:"></Label>
+                        <ComboBox Name="departmentsName" Height="20" Width="370" HorizontalAlignment="Left" VerticalAlignment="Top"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Button Name="addUser" Content="Додати працівника" Height="20" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_AddEmloye"></Button>
+                        <Button Name="editUser" Content="Редагувати працівника" Height="20" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_EditEmloye"></Button>
+                        <Button Name="deleteUser" Content="Видалення працівника" Height="20" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_DeleteEmloye"></Button>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Name="logUser"></Label>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Name="three" Header="Оргтехніка">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="Тип пристрою:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <DataGrid Name="device_ENUM" Grid.Row="0" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_DeviceENUM" MouseUp="MouseUp_DeviceENUM"></DataGrid>
+                <Label Content="Пристрій:" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <DataGrid Name="device" Grid.Row="0" Grid.Column="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Device"></DataGrid>
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Тип пристрою:" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                        <TextBox Name="devENUM_Text" Height="20" Width="270" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <Button Name="addDevENUM" Content="Додати тип" Height="20" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_AddDevENUM"></Button>
+                        <Button Name="editDevENUM" Content="Редагувати тип" Height="20" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_EditDevENUM"></Button>
+                        <Button Name="deleteDevENUM" Content="Видалити тип" Height="20" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_DeleteDevENUM"></Button>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2" Margin="0,50,0,0">
+                    <Label Content="Пристрій:" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                    <StackPanel Orientation="Vertical"  Height="330" VerticalAlignment="Top">
+                        <Label Content="Модель:"></Label>
+                        <TextBox Name="model" Height="20" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                        <Label Content="Опис1:"></Label>
+                        <TextBox Name="description1" Height="20" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                        <Label Content="Опис2:"></Label>
+                        <TextBox Name="description2" Height="20" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                        <Label Content="Опис3:"></Label>
+                        <TextBox Name="description3" Height="20" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                        <Label Content="Опис4:"></Label>
+                        <TextBox Name="description4" Height="20" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                        <Label Content="Опис5:"></Label>
+                        <TextBox Name="description5" Height="20" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
+                        <Label Content="Тип пристрою:"></Label>
+                        <ComboBox Name="deviceENUM" Height="20" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Name="addDevice" Content="Додати пристрій" Height="20" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_AddDevice"></Button>
+                        <Button Name="editDevice" Content="Редагувати пристрій" Height="20" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_EditDevice"></Button>
+                        <Button Name="deleteDevice" Content="Видалення пристрою" Height="20" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_DeleteDevice"></Button>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Name="logDevice"></Label>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Name="four" Header="Облік техніки">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="0.2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="Відділи підприємства:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <DataGrid Name="departmentA" Margin="3,25,3,0" MouseUp="MouseUp_DepartmentA"></DataGrid>
+                <Label Content="Працівники підприємства:" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <DataGrid Name="employeA" Grid.Column="1" Margin="3,25,3,0" MouseUp="MouseUp_User"></DataGrid>
+                <Label Content="Комп'ютер:" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <DataGrid Name="computerA" Grid.Column="2" Margin="3,25,3,0" MouseUp="MouseUp_Comp"></DataGrid>
+                <Label Content="Тип пристрою:" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <DataGrid Name="device_ENUMA" Grid.Column="3" Margin="3,25,3,0" MouseUp="MouseUp_DeviceENUMA"></DataGrid>
+                <Label Content="Пристрій:" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <DataGrid Name="deviceA" Grid.Column="4" Margin="3,25,3,0" MouseUp="MouseUp_Dev"></DataGrid>
+                <Label Content="Облік техніки:" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                <DataGrid Name="accounting" Grid.Row="1" Grid.ColumnSpan="5" Margin="3,25,3,0"  MouseUp="MouseUp_Accounting"></DataGrid>
+                <StackPanel Grid.Row="2">
+                    <StackPanel>
+                        <Label Content="Користувач"></Label>
+                        <TextBox Name="user" Width="200" Height="20" HorizontalAlignment="Left"></TextBox>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Комп'ютер"></Label>
+                        <TextBox Name="comp" Width="200" Height="20" HorizontalAlignment="Left"></TextBox>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Пристрій"></Label>
+                        <TextBox Name="dev" Width="200" Height="20" HorizontalAlignment="Left"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="1">
+                    <Button Content="Додати" Margin="5" Click="Click_AddAccounting"></Button>
+                    <Button Content="Змінити" Margin="5" Click="Click_EditAccounting"></Button>
+                    <Button Content="Видалити" Margin="5" Click="Click_DeleteAccounting"></Button>
+                    <Label Name="logAccounting" Margin="5"></Label>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Name="five" Header="Звітність">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="0.2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="Облік комп'ютерної техніки:" HorizontalAlignment="Center" Grid.ColumnSpan="2"  VerticalAlignment="Top"></Label>
+                <DataGrid Name="reportA" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="3,25,3,0" MouseUp="MouseUp_Report"></DataGrid>
+                <Button Grid.Row="2" Grid.ColumnSpan="2" Click="Click_LoadAllToExcel">Вигрузити</Button>
+                <Label Content="Облік комп'ютерів техніки:" HorizontalAlignment="Center" Grid.Column="2" Grid.ColumnSpan="3"  VerticalAlignment="Top"></Label>
+                <DataGrid Name="reportCompA" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="3,25,3,0"></DataGrid>
+                <Button Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="2" Click="Click_LoadCompToExcel">Вигрузити ПК</Button>
+            </Grid>
+
+        </TabItem>
+    </TabControl>
+</Window>    
