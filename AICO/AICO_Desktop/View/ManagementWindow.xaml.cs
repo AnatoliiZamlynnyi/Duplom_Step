@@ -23,10 +23,10 @@ namespace AICO_Desktop
 {
     public partial class ManagementWindow : Window
     {
-        Excel.Workbook fileExcel;
+        //Excel.Workbook fileExcel;
         Computer myComp;
         EfContext context;
-        ObservableCollection<Department> nodeDep;
+        //ObservableCollection<Department> nodeDep;
         public Employe root { get; set; }
         public ManagementWindow(Employe user)
         {
@@ -148,11 +148,11 @@ namespace AICO_Desktop
                 reportCompA.ItemsSource = context.Computers.ToList();
             }
         }
-        
+
         private void Click_LoadCompToExcel(object sender, RoutedEventArgs e)
         {
-            var reportData = new MaketReport().GetReport();
-            var reportExcel = new MaketExcelGenerator().Generate(reportData);
+            //var reportData = new MaketReport().GetReport();
+            var reportExcel = new MaketExcelGeneratorComp().Generate();
             File.WriteAllBytes("D:/ReportComp.xlsx", reportExcel);
             //Excel.Application excel = new Excel.Application();
             //fileExcel = excel.Workbooks.Open("D:/Report.xlsx");
@@ -161,12 +161,9 @@ namespace AICO_Desktop
 
         private void Click_LoadAllToExcel(object sender, RoutedEventArgs e)
         {
-            var reportData = new MaketReport().GetReport();
-            var reportExcel = new MaketExcelGenerator().Generate(reportData);
+            var reportExcel = new MaketExcelGeneratorAll().Generate();
             File.WriteAllBytes("D:/ReportAll.xlsx", reportExcel);
-            //Excel.Application excel = new Excel.Application();
-            //fileExcel = excel.Workbooks.Open("D:/Report.xlsx");
-            MessageBox.Show("Вигрузка All в Exel");
+            MessageBox.Show("Звіт вдало вигружений у D:/ReportAll.xlsx");
         }
         private void Expanded_DepTree(object sender, RoutedEventArgs e)
         {
@@ -179,8 +176,6 @@ namespace AICO_Desktop
             //TreeViewItem tvItem = (TreeViewItem)sender;
             //MessageBox.Show("Выбран узел: " + tvItem.Header.ToString());
         }
-
-
 
         //=========================Облік техніки
         private void Click_AddAccounting(object sender, RoutedEventArgs e)
