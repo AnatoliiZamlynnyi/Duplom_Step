@@ -18,15 +18,14 @@ using System.Windows.Shapes;
 using OfficeOpenXml;
 using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Security.Cryptography;
 
 namespace AICO_Desktop
 {
     public partial class ManagementWindow : Window
     {
-        //Excel.Workbook fileExcel;
         Computer myComp;
         EfContext context;
-        //ObservableCollection<Department> nodeDep;
         public Employe root { get; set; }
         public ManagementWindow(Employe user)
         {
@@ -59,14 +58,14 @@ namespace AICO_Desktop
                 if (newComp != null)
                 {
                     userTmp = context.Accountings.FirstOrDefault(x => x.ComputerID == newComp.ID);
-                    //if (userTmp != null)
-                    //{
-                    //    userPCDB.Content = "Обладнання закріплене за ПК " + userTmp.Employes.Name;
-                    //}
-                    //else
-                    //{
-                    //    userPCDB.Content = "Обладнання закріплене за ПК. ";
-                    //}
+                    if (userTmp != null)
+                    {
+                        userPCDB.Content = "Обладнання закріплене за ПК " + newComp.NamePC;
+                    }
+                    else
+                    {
+                        userPCDB.Content = "Обладнання закріплене за ПК. ";
+                    }
                     if (newComp != null)
                     {
                         AddComp.IsEnabled = false;
@@ -132,6 +131,18 @@ namespace AICO_Desktop
             if ((tcSample.SelectedItem as TabItem).Name == "five")
             {
                 reportA.ItemsSource = context.Accountings.ToList();
+                if (context.Departments.Count() != 0)
+                    depSelect.ItemsSource = context.Departments.Select(x => x.Name).ToList();
+                else
+                    depSelect.ItemsSource = "";
+                if (context.Employes.Count() != 0)
+                    empSelect.ItemsSource = context.Employes.Select(x => x.Name).ToList();
+                else
+                    empSelect.ItemsSource = "";
+                if (context.Device_ENUMs.Count() != 0)
+                    devSelect.ItemsSource = context.Device_ENUMs.Select(x => x.Name).ToList();
+                else
+                    devSelect.ItemsSource = "";
             }
         }
         //=====================================================Звітність
@@ -149,32 +160,86 @@ namespace AICO_Desktop
             }
         }
 
+        private void Click_LoadDeviceToExcel(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Device_ENUM obj = new Device_ENUM();
+                var dev = context.Device_ENUMs.ToList();
+                foreach (var item in dev)
+                {
+                    if (item.Name == devSelect.SelectedItem.ToString())
+                        obj.ID = item.ID;
+                }
+                var reportExcel = new MaketExcelGeneratorDevice().Generate(obj);
+                File.WriteAllBytes("D:/ReportDevice_" + DateTime.Now.ToString("dd-MM-yyyy_hh-mm-ss") + ".xlsx", reportExcel);
+                MessageBox.Show("Звіт вдало вигружений у D:/ReportDevice***.xlsx");
+            }
+            catch { }
+        }
+
+        private void Click_LoadDepartmentToExcel(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Department obj = new Department();
+                var dep = context.Departments.ToList();
+                foreach (var item in dep)
+                {
+                    if (item.Name == depSelect.SelectedItem.ToString())
+                        obj.ID = item.ID;
+                }
+                var reportExcel = new MaketExcelGeneratorDepartment().Generate(obj);
+                File.WriteAllBytes("D:/ReportDepartment_" + DateTime.Now.ToString("dd-MM-yyyy_hh-mm-ss") + ".xlsx", reportExcel);
+                MessageBox.Show("Звіт вдало вигружений у D:/ReportDepartment***.xlsx");
+            }
+            catch { }
+        }
+
+        private void Click_LoadEmployeToExcel(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Employe obj = new Employe();
+                var emp = context.Employes.ToList();
+                foreach (var item in emp)
+                {
+                    if (item.Name == empSelect.SelectedItem.ToString())
+                        obj.ID = item.ID;
+                }
+                var reportExcel = new MaketExcelGeneratorEmploye().Generate(obj);
+                File.WriteAllBytes("D:/ReportEmploye_" + DateTime.Now.ToString("dd-MM-yyyy_hh-mm-ss") + ".xlsx", reportExcel);
+                MessageBox.Show("Звіт вдало вигружений у D:/ReportEmploye***.xlsx");
+            }
+            catch { }
+        }
+
         private void Click_LoadCompToExcel(object sender, RoutedEventArgs e)
         {
-            //var reportData = new MaketReport().GetReport();
-            var reportExcel = new MaketExcelGeneratorComp().Generate();
-            File.WriteAllBytes("D:/ReportComp.xlsx", reportExcel);
-            //Excel.Application excel = new Excel.Application();
-            //fileExcel = excel.Workbooks.Open("D:/Report.xlsx");
-            MessageBox.Show("Вигрузка Comp в Exel");
+            try
+            {
+                Accounting obj = new Accounting();
+                obj = reportA.SelectedItem as Accounting;
+                string namePC = "";
+                foreach (var item in context.Computers.ToList())
+                    if (obj.ComputerID == item.ID)
+                        namePC = item.NamePC;
+                var reportExcel = new MaketExcelGeneratorComp().Generate(obj);
+                File.WriteAllBytes("D:/PasportComp_" + namePC + DateTime.Now.ToString("_dd-MM-yyyy_hh-mm-ss") + ".xlsx", reportExcel);
+                MessageBox.Show("Звіт вдало вигружений у D:/PasportComp***.xlsx");
+            }
+            catch { }
         }
 
         private void Click_LoadAllToExcel(object sender, RoutedEventArgs e)
         {
-            var reportExcel = new MaketExcelGeneratorAll().Generate();
-            File.WriteAllBytes("D:/ReportAll.xlsx", reportExcel);
-            MessageBox.Show("Звіт вдало вигружений у D:/ReportAll.xlsx");
-        }
-        private void Expanded_DepTree(object sender, RoutedEventArgs e)
-        {
-            //TreeViewItem tvItem = (TreeViewItem)sender;
-            //MessageBox.Show("Узел " + tvItem.Header.ToString() + " раскрыт");
-        }
-
-        private void Selected_EmpTree(object sender, RoutedEventArgs e)
-        {
-            //TreeViewItem tvItem = (TreeViewItem)sender;
-            //MessageBox.Show("Выбран узел: " + tvItem.Header.ToString());
+            try
+            {
+                var reportExcel = new MaketExcelGeneratorAll().Generate();
+                File.WriteAllBytes("D:/ReportAll_" + DateTime.Now.ToString("dd-MM-yyyy_hh-mm-ss") + ".xlsx", reportExcel);
+            }
+            catch { }
+            MessageBox.Show("Звіт вдало вигружений у D:/ReportAll***.xlsx");
         }
 
         //=========================Облік техніки
@@ -293,12 +358,7 @@ namespace AICO_Desktop
                 if (tmp.Devices.Model != null)
                     dev.Text = tmp.Devices.Model;
             }
-            catch
-            {
-                //user.Clear();
-                //comp.Clear();
-                //dev.Clear();
-            }
+            catch { }
         }
 
         private void MouseUp_User(object sender, MouseButtonEventArgs e)
@@ -565,6 +625,79 @@ namespace AICO_Desktop
             }
         }
         //=====================================================Відділи та працівники
+        public static string CodingGetHash(string password)
+        {
+            using (var hash = SHA1.Create())
+                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
+        }
+
+        private void AddAdmin_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            oK.IsEnabled = true;
+            fine.IsEnabled = true;
+        }
+
+        private void AddAdmin_UncheckedChanged(object sender, RoutedEventArgs e)
+        {
+            oK.IsEnabled = false;
+            fine.IsEnabled = false;
+        }
+
+        private void Click_AddAdministrator(object sender, RoutedEventArgs e)
+        {
+            if (addAdmin.IsChecked == true)
+            {
+                Employe newUser = new Employe();
+                newUser = employe.SelectedItem as Employe;
+                bool end = false;
+                do
+                {
+                    if (pass.Password == passCopy.Password)
+                    {
+                        using (EfContext dbContext = new EfContext())
+                        {
+                            dbContext.Employes.Attach(newUser);
+                            newUser.Password = CodingGetHash(pass.Password);
+                            dbContext.Entry(newUser).State = System.Data.Entity.EntityState.Modified;
+                            dbContext.SaveChanges();
+                            pass.Password = "";
+                            passCopy.Password = "";
+                            logUser.Foreground = Brushes.Green;
+                            logUser.Content = "Права адміністратора надано";
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        pass.Password = "";
+                        passCopy.Password = "";
+                        logUser.Foreground = Brushes.Red;
+                        logUser.Content = "Пароль та підтвердження не співпадають";
+                    }
+                } while (end == true);
+                employe.ItemsSource = context.Employes.ToList();
+            }
+        }
+
+        private void Click_DelAdministrator(object sender, RoutedEventArgs e)
+        {
+            if (addAdmin.IsChecked == true)
+            {
+                Employe newUser = new Employe();
+                newUser = employe.SelectedItem as Employe;
+                using (EfContext dbContext = new EfContext())
+                {
+                    dbContext.Employes.Attach(newUser);
+                    newUser.Password = "";
+                    dbContext.Entry(newUser).State = System.Data.Entity.EntityState.Modified;
+                    dbContext.SaveChanges();
+                }
+                logUser.Foreground = Brushes.Green;
+                logUser.Content = "Права Адміністратора скасовано!";
+                employe.ItemsSource = context.Employes.ToList();
+            }
+        }
+
         private void Click_AddEmloye(object sender, RoutedEventArgs e)
         {
             var tmpUser = context.Employes.FirstOrDefault(x => x.Name == name.Text);
@@ -609,7 +742,7 @@ namespace AICO_Desktop
                     if (item.Name == departmentsName.SelectedItem.ToString())
                         newUser.DepartmentID = item.ID;
                 dbContext.Entry(newUser).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
+                dbContext.SaveChanges();
             }
             employe.ItemsSource = context.Employes.ToList();
             name.Clear();
@@ -803,6 +936,5 @@ namespace AICO_Desktop
             log.Content = "Зміни внесено успішно!";
             EditComp.IsEnabled = false;
         }
-
     }
 }

@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:AICO_Desktop"
         mc:Ignorable="d"
         Title="Облік та інвентаризація комп'ютерної техніки організації"
-        WindowStartupLocation="CenterScreen" Width="800" Height="500">
+        WindowStartupLocation="CenterScreen" Width="900" Height="400">
     <!--WindowState="Maximized"-->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
             <RowDefinition Height="0.1*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="0.1*"></RowDefinition>

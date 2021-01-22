@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AICO_Desktop"
         mc:Ignorable="d"
-        Title="Вхід для адміністратора" Height="240" Width="350" WindowStartupLocation="CenterScreen">
+        Title="AICO - Вхід для адміністратора" Height="260" Width="350" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/View/aico.jpg"/>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
@@ -14,7 +17,7 @@
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
@@ -29,9 +32,9 @@
         <StackPanel Grid.Row="3" HorizontalAlignment="Center">
             <PasswordBox Name="pass" Height="30" Width="280" FontSize="16" HorizontalContentAlignment="Center"></PasswordBox>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="0,10,0,0" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="0,25,0,0" HorizontalAlignment="Center">
             <Button Name="enter"  Height="30" Width="280" FontSize="16" VerticalAlignment="Center" Click="Click_EnterAdmin" IsDefault="True">Вхід</Button>
         </StackPanel>
-        <Label Name="stan" Foreground="Red" Grid.Row="5" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"></Label>
+        <Label Name="stan" Margin="0,2,0,0" Foreground="Red" Grid.Row="5" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"></Label>
     </Grid>
 </Window>

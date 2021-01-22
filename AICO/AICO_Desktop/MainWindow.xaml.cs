@@ -1,20 +1,12 @@
 ﻿using AICO_CL.Entity;
 using AICO_CL.Models;
+using AICO_Desktop.View;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AICO_Desktop
 {
@@ -24,6 +16,8 @@ namespace AICO_Desktop
         EfContext context;
         public MainWindow()
         {
+            var startLogo = new StartLogo();
+            startLogo.Show();
             InitializeComponent();
             context = new EfContext();
             context.Database.CreateIfNotExists();
@@ -62,7 +56,7 @@ namespace AICO_Desktop
             lb8.Content = myComp.Video;
             userPCDB.Content = "Обладнання закріплене за ПК.";
             Computer newComp = new Computer();
-            newComp = context.Computers.FirstOrDefault(x=>x.NamePC==myComp.NamePC);
+            newComp = context.Computers.FirstOrDefault(x => x.NamePC == myComp.NamePC);
             if (newComp != null)
             {
                 _lb0.Content = newComp.UserNamePC;
@@ -83,6 +77,7 @@ namespace AICO_Desktop
                 _lb8.Content = newComp.Video;
                 _lb8.Foreground = newComp.Video == myComp.Video ? Brushes.Black : Brushes.Red;
             }
+            startLogo.Close();
         }
         public static string CodingGetHash(string password)
         {

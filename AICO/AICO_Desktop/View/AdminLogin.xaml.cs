@@ -1,5 +1,6 @@
 ﻿using AICO_CL.Entity;
 using AICO_CL.Models;
+using AICO_Desktop.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace AICO_Desktop
             string log = login.Text.ToLower();
             string password = CodingGetHash(pass.Password);
             user = new Employe();
-            user = context.Employes.FirstOrDefault(x => x.Name == log && x.Password == password);
+            user = context.Employes.FirstOrDefault(x => x.Name.ToLower() == log && x.Password == password);
             if (user == null)
             {
                 stan.Content = "Ім'я або пароль невірнi.";
@@ -52,8 +53,6 @@ namespace AICO_Desktop
             }
             else
             {
-                login.Clear();
-                pass.Clear();
                 var config = new ManagementWindow(user);
                 config.Show();
                 this.Close();

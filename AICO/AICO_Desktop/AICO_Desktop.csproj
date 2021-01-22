@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="View\aico.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EPPlus" Version="5.5.1" />
     <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1000" />
   </ItemGroup>
@@ -18,6 +22,14 @@
 
   <ItemGroup>
     <None Include="bin\Debug\netcoreapp3.1\configDB.cfg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\aico.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Image\" />
   </ItemGroup>
 
 </Project>
