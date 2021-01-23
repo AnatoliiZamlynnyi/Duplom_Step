@@ -52,8 +52,7 @@ namespace AICO_Desktop
                 lb6.Content = myComp.RAMpc;
                 lb7.Content = myComp.HDDpc;
                 lb8.Content = myComp.Video;
-                Computer newComp = new Computer();
-                newComp = context.Computers.FirstOrDefault(x => x.NamePC == myComp.NamePC);
+                Computer newComp = context.Computers.FirstOrDefault(x => x.NamePC == myComp.NamePC);
                 Accounting userTmp = new Accounting();
                 if (newComp != null)
                 {
@@ -150,8 +149,7 @@ namespace AICO_Desktop
         {
             try
             {
-                Accounting reportSeach = new Accounting();
-                reportSeach = reportA.SelectedItem as Accounting;
+                Accounting reportSeach = reportA.SelectedItem as Accounting;
                 reportCompA.ItemsSource = context.Computers.Where(x => x.ID == reportSeach.ComputerID).ToList();
             }
             catch
@@ -281,8 +279,7 @@ namespace AICO_Desktop
 
         private void Click_EditAccounting(object sender, RoutedEventArgs e)
         {
-            Accounting editaccount = new Accounting();
-            editaccount = accounting.SelectedItem as Accounting;
+            Accounting editaccount = accounting.SelectedItem as Accounting;
             if (editaccount != null)
             {
                 using (EfContext dbContext = new EfContext())
@@ -333,8 +330,7 @@ namespace AICO_Desktop
 
         private void Click_DeleteAccounting(object sender, RoutedEventArgs e)
         {
-            Accounting delAccount = new Accounting();
-            delAccount = accounting.SelectedItem as Accounting;
+            Accounting delAccount = accounting.SelectedItem as Accounting;
             context.Accountings.Remove(delAccount);
             context.SaveChanges();
             accounting.ItemsSource = context.Accountings.ToList();
@@ -349,8 +345,7 @@ namespace AICO_Desktop
         {
             try
             {
-                Accounting tmp = new Accounting();
-                tmp = accounting.SelectedItem as Accounting;
+                Accounting tmp = accounting.SelectedItem as Accounting;
                 if (tmp.Employes.Name != null)
                     user.Text = tmp.Employes.Name;
                 if (tmp.Computers.NamePC.ToString() != null)
@@ -365,8 +360,7 @@ namespace AICO_Desktop
         {
             try
             {
-                Employe tmpUser = new Employe();
-                tmpUser = employeA.SelectedItem as Employe;
+                Employe tmpUser = employeA.SelectedItem as Employe;
                 user.Text = tmpUser.Name;
             }
             catch
@@ -379,8 +373,7 @@ namespace AICO_Desktop
         {
             try
             {
-                Computer tmpComp = new Computer();
-                tmpComp = computerA.SelectedItem as Computer;
+                Computer tmpComp = computerA.SelectedItem as Computer;
                 comp.Text = tmpComp.NamePC;
             }
             catch
@@ -392,8 +385,7 @@ namespace AICO_Desktop
         {
             try
             {
-                Device tmpDev = new Device();
-                tmpDev = deviceA.SelectedItem as Device;
+                Device tmpDev = deviceA.SelectedItem as Device;
                 dev.Text = tmpDev.Model;
             }
             catch
@@ -406,8 +398,7 @@ namespace AICO_Desktop
         {
             try
             {
-                Department editdep = new Department();
-                editdep = departmentA.SelectedItem as Department;
+                Department editdep = departmentA.SelectedItem as Department;
                 employeA.ItemsSource = context.Employes.Where(x => x.Departments.ID == editdep.ID).ToList();
             }
             catch
@@ -420,8 +411,7 @@ namespace AICO_Desktop
         {
             try
             {
-                Device_ENUM editDevEnum = new Device_ENUM();
-                editDevEnum = device_ENUMA.SelectedItem as Device_ENUM;
+                Device_ENUM editDevEnum = device_ENUMA.SelectedItem as Device_ENUM;
                 deviceA.ItemsSource = context.Devices.Where(x => x.Devices_ENUM.ID == editDevEnum.ID).ToList();
             }
             catch
@@ -467,8 +457,7 @@ namespace AICO_Desktop
 
         private void Click_EditDevice(object sender, RoutedEventArgs e)
         {
-            Device newDevice = new Device();
-            newDevice = device.SelectedItem as Device;
+            Device newDevice = device.SelectedItem as Device;
             using (EfContext dbContext = new EfContext())
             {
                 dbContext.Devices.Attach(newDevice);
@@ -498,8 +487,7 @@ namespace AICO_Desktop
 
         private void Click_DeleteDevice(object sender, RoutedEventArgs e)
         {
-            Device newDevice = new Device();
-            newDevice = device.SelectedItem as Device;
+            Device newDevice = device.SelectedItem as Device;
             context.Devices.Remove(newDevice);
             context.SaveChanges();
             device.ItemsSource = context.Devices.ToList();
@@ -519,8 +507,7 @@ namespace AICO_Desktop
             logDevice.Content = "";
             try
             {
-                Device editDevice = new Device();
-                editDevice = device.SelectedItem as Device;
+                Device editDevice = device.SelectedItem as Device;
                 model.Text = editDevice.Model;
                 description1.Text = editDevice.Description_1;
                 description2.Text = editDevice.Description_2;
@@ -568,8 +555,7 @@ namespace AICO_Desktop
         }
         private void Click_EditDevENUM(object sender, RoutedEventArgs e)
         {
-            Device_ENUM newDevEnum = new Device_ENUM();
-            newDevEnum = device_ENUM.SelectedItem as Device_ENUM;
+            Device_ENUM newDevEnum = device_ENUM.SelectedItem as Device_ENUM;
             using (var dbContext = new EfContext())
             {
                 newDevEnum.Name = devENUM_Text.Text;
@@ -584,8 +570,7 @@ namespace AICO_Desktop
         }
         private void Click_DeleteDevENUM(object sender, RoutedEventArgs e)
         {
-            Device_ENUM newDevEnum = new Device_ENUM();
-            newDevEnum = device_ENUM.SelectedItem as Device_ENUM;
+            Device_ENUM newDevEnum = device_ENUM.SelectedItem as Device_ENUM;
             context.Device_ENUMs.Remove(newDevEnum);
             context.SaveChanges();
             device_ENUM.ItemsSource = context.Device_ENUMs.ToList();
@@ -598,8 +583,7 @@ namespace AICO_Desktop
             logDevice.Content = "";
             try
             {
-                Device_ENUM editDevEnum = new Device_ENUM();
-                editDevEnum = device_ENUM.SelectedItem as Device_ENUM;
+                Device_ENUM editDevEnum = device_ENUM.SelectedItem as Device_ENUM;
                 device.ItemsSource = context.Devices.Where(x => x.Devices_ENUM.ID == editDevEnum.ID).ToList();
             }
             catch
@@ -614,8 +598,7 @@ namespace AICO_Desktop
             logDevice.Content = "";
             try
             {
-                Device_ENUM editDevEnum = new Device_ENUM();
-                editDevEnum = device_ENUM.SelectedItem as Device_ENUM;
+                Device_ENUM editDevEnum = device_ENUM.SelectedItem as Device_ENUM;
                 devENUM_Text.Text = editDevEnum.Name;
             }
             catch
@@ -633,12 +616,20 @@ namespace AICO_Desktop
 
         private void AddAdmin_CheckedChanged(object sender, RoutedEventArgs e)
         {
+            passL.IsEnabled = true;
+            pass.IsEnabled = true;
+            passCopyL.IsEnabled = true;
+            passCopy.IsEnabled = true;
             oK.IsEnabled = true;
             fine.IsEnabled = true;
         }
 
         private void AddAdmin_UncheckedChanged(object sender, RoutedEventArgs e)
         {
+            passL.IsEnabled = false;
+            pass.IsEnabled = false;
+            passCopyL.IsEnabled = false;
+            passCopy.IsEnabled = false;
             oK.IsEnabled = false;
             fine.IsEnabled = false;
         }
@@ -647,8 +638,7 @@ namespace AICO_Desktop
         {
             if (addAdmin.IsChecked == true)
             {
-                Employe newUser = new Employe();
-                newUser = employe.SelectedItem as Employe;
+                Employe newUser = employe.SelectedItem as Employe;
                 bool end = false;
                 do
                 {
@@ -683,12 +673,11 @@ namespace AICO_Desktop
         {
             if (addAdmin.IsChecked == true)
             {
-                Employe newUser = new Employe();
-                newUser = employe.SelectedItem as Employe;
+                Employe newUser = employe.SelectedItem as Employe;
                 using (EfContext dbContext = new EfContext())
                 {
                     dbContext.Employes.Attach(newUser);
-                    newUser.Password = "";
+                    newUser.Password = null;
                     dbContext.Entry(newUser).State = System.Data.Entity.EntityState.Modified;
                     dbContext.SaveChanges();
                 }
@@ -729,8 +718,7 @@ namespace AICO_Desktop
 
         private void Click_EditEmloye(object sender, RoutedEventArgs e)
         {
-            Employe newUser = new Employe();
-            newUser = employe.SelectedItem as Employe;
+            Employe newUser = employe.SelectedItem as Employe;
             using (EfContext dbContext = new EfContext())
             {
                 dbContext.Employes.Attach(newUser);
@@ -754,8 +742,7 @@ namespace AICO_Desktop
 
         private void Click_DeleteEmloye(object sender, RoutedEventArgs e)
         {
-            Employe newUser = new Employe();
-            newUser = employe.SelectedItem as Employe;
+            Employe newUser = employe.SelectedItem as Employe;
             context.Employes.Remove(newUser);
             context.SaveChanges();
             employe.ItemsSource = context.Employes.ToList();
@@ -772,12 +759,24 @@ namespace AICO_Desktop
             logUser.Content = "";
             try
             {
-                Employe editUser = new Employe();
-                editUser = employe.SelectedItem as Employe;
-                name.Text = editUser.Name;
-                work.Text = editUser.Work;
-                phone.Text = editUser.Phone;
-                departmentsName.SelectedItem = editUser.Departments.Name;
+                if (employe.SelectedItem != null)
+                {
+                    Employe editUser = employe.SelectedItem as Employe;
+                    name.Text = editUser.Name;
+                    work.Text = editUser.Work;
+                    phone.Text = editUser.Phone;
+                    departmentsName.SelectedItem = editUser.Departments.Name;
+                    if (editUser.Password == null)
+                    {
+                        oK.IsEnabled=true;
+                        fine.IsEnabled = false;
+                    }
+                    else
+                    {
+                        oK.IsEnabled = false;
+                        fine.IsEnabled = true;
+                    }
+                }
             }
             catch (NullReferenceException ex)
             {
@@ -815,8 +814,7 @@ namespace AICO_Desktop
         }
         private void Click_EditDep(object sender, RoutedEventArgs e)
         {
-            Department newDep = new Department();
-            newDep = department.SelectedItem as Department;
+            Department newDep = department.SelectedItem as Department;
             using (var dbContext = new EfContext())
             {
                 newDep.Name = depText.Text;
@@ -831,8 +829,7 @@ namespace AICO_Desktop
         }
         private void Click_DeleteDep(object sender, RoutedEventArgs e)
         {
-            Department newDep = new Department();
-            newDep = department.SelectedItem as Department;
+            Department newDep = department.SelectedItem as Department;
             context.Departments.Remove(newDep);
             context.SaveChanges();
             department.ItemsSource = context.Departments.ToList();
@@ -845,9 +842,11 @@ namespace AICO_Desktop
             logUser.Content = "";
             try
             {
-                Department editdep = new Department();
-                editdep = department.SelectedItem as Department;
-                employe.ItemsSource = context.Employes.Where(x => x.Departments.ID == editdep.ID).ToList();
+                if (department.SelectedItem != null)
+                {
+                    Department editdep = department.SelectedItem as Department;
+                    employe.ItemsSource = context.Employes.Where(x => x.Departments.ID == editdep.ID).ToList();
+                }
             }
             catch
             {
@@ -861,8 +860,7 @@ namespace AICO_Desktop
             logUser.Content = "";
             try
             {
-                Department editdep = new Department();
-                editdep = department.SelectedItem as Department;
+                Department editdep = department.SelectedItem as Department;
                 depText.Text = editdep.Name;
             }
             catch
@@ -917,8 +915,7 @@ namespace AICO_Desktop
 
         private void Click_EditPC(object sender, RoutedEventArgs e)
         {
-            Computer compEdit = new Computer();
-            compEdit = context.Computers.FirstOrDefault(x => x.NamePC == _lb1.Content.ToString());
+            Computer compEdit = context.Computers.FirstOrDefault(x => x.NamePC == _lb1.Content.ToString());
             using (var dbContext = new EfContext())
             {
                 compEdit.OSVersion = lb2.Content.ToString();

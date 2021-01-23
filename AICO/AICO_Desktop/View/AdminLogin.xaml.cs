@@ -42,7 +42,6 @@ namespace AICO_Desktop
         {
             string log = login.Text.ToLower();
             string password = CodingGetHash(pass.Password);
-            user = new Employe();
             user = context.Employes.FirstOrDefault(x => x.Name.ToLower() == log && x.Password == password);
             if (user == null)
             {

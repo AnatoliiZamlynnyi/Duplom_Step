@@ -21,8 +21,7 @@ namespace AICO_Desktop
             InitializeComponent();
             context = new EfContext();
             context.Database.CreateIfNotExists();
-            Employe user = new Employe();
-            user = context.Employes.FirstOrDefault(x => x.Name == "admin");
+            Employe user = context.Employes.FirstOrDefault(x => x.Name == "admin");
             if (user == null)
             {
                 Department dep = new Department
@@ -55,8 +54,7 @@ namespace AICO_Desktop
             lb7.Content = myComp.HDDpc;
             lb8.Content = myComp.Video;
             userPCDB.Content = "Обладнання закріплене за ПК.";
-            Computer newComp = new Computer();
-            newComp = context.Computers.FirstOrDefault(x => x.NamePC == myComp.NamePC);
+            Computer newComp = context.Computers.FirstOrDefault(x => x.NamePC == myComp.NamePC);
             if (newComp != null)
             {
                 _lb0.Content = newComp.UserNamePC;
