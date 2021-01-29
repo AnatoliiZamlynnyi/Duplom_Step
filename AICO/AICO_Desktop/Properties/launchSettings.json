@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AICO_Desktop": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}

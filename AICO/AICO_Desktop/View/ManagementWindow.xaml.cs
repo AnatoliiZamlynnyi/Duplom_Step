@@ -17,8 +17,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using OfficeOpenXml;
 using System.IO;
-using Excel = Microsoft.Office.Interop.Excel;
 using System.Security.Cryptography;
+using Excel=Microsoft.Office.Interop.Excel;
+
 
 namespace AICO_Desktop
 {
@@ -103,28 +104,64 @@ namespace AICO_Desktop
             if ((tcSample.SelectedItem as TabItem).Name == "two")
             {
                 department.ItemsSource = context.Departments.ToList();
-                employe.ItemsSource = context.Employes.ToList();
+                if (department.SelectedItem == null)
+                    employe.ItemsSource = context.Employes.ToList();
+                else
+                {
+                    Department editdep = department.SelectedItem as Department;
+                    employe.ItemsSource = context.Employes.Where(x => x.Departments.ID == editdep.ID).ToList();
+                }
                 if (context.Departments.Count() != 0)
                     departmentsName.ItemsSource = context.Departments.Select(x => x.Name).ToList();
                 else
-                    departmentsName.ItemsSource = "";
-            }
-            if ((tcSample.SelectedItem as TabItem).Name == "three")
-            {
+                    departmentsName.ItemsSource = null;
                 device_ENUM.ItemsSource = context.Device_ENUMs.ToList();
-                device.ItemsSource = context.Devices.ToList();
+                if (device_ENUM.SelectedItem == null)
+                    device.ItemsSource = context.Devices.ToList();
+                else
+                {
+                    Device_ENUM editDevEnum = device_ENUM.SelectedItem as Device_ENUM;
+                    device.ItemsSource = context.Devices.Where(x => x.Devices_ENUM.ID == editDevEnum.ID).ToList();
+                }
                 if (context.Device_ENUMs.Count() != 0)
                     deviceENUM.ItemsSource = context.Device_ENUMs.Select(x => x.Name).ToList();
                 else
-                    deviceENUM.ItemsSource = "";
+                    deviceENUM.ItemsSource = null;
             }
+            //if ((tcSample.SelectedItem as TabItem).Name == "three")
+            //{
+            //    device_ENUM.ItemsSource = context.Device_ENUMs.ToList();
+            //    if (device_ENUM.SelectedItem == null)
+            //        device.ItemsSource = context.Devices.ToList();
+            //    else
+            //    {
+            //        Device_ENUM editDevEnum = device_ENUM.SelectedItem as Device_ENUM;
+            //        device.ItemsSource = context.Devices.Where(x => x.Devices_ENUM.ID == editDevEnum.ID).ToList();
+            //    }
+            //    if (context.Device_ENUMs.Count() != 0)
+            //        deviceENUM.ItemsSource = context.Device_ENUMs.Select(x => x.Name).ToList();
+            //    else
+            //        deviceENUM.ItemsSource = null;
+            //}
             if ((tcSample.SelectedItem as TabItem).Name == "four")
             {
                 departmentA.ItemsSource = context.Departments.ToList();
-                employeA.ItemsSource = context.Employes.ToList();
+                if (departmentA.SelectedItem == null)
+                    employeA.ItemsSource = context.Employes.ToList();
+                else
+                {
+                    Department editdep = departmentA.SelectedItem as Department;
+                    employeA.ItemsSource = context.Employes.Where(x => x.Departments.ID == editdep.ID).ToList();
+                }
                 computerA.ItemsSource = context.Computers.ToList();
                 device_ENUMA.ItemsSource = context.Device_ENUMs.ToList();
-                deviceA.ItemsSource = context.Devices.ToList();
+                if (device_ENUMA.SelectedItem == null)
+                    deviceA.ItemsSource = context.Devices.ToList();
+                else
+                {
+                    Device_ENUM editDevEnum = device_ENUMA.SelectedItem as Device_ENUM;
+                    deviceA.ItemsSource = context.Devices.Where(x => x.Devices_ENUM.ID == editDevEnum.ID).ToList();
+                }
                 accounting.ItemsSource = context.Accountings.ToList();
             }
             if ((tcSample.SelectedItem as TabItem).Name == "five")
@@ -223,8 +260,13 @@ namespace AICO_Desktop
                     if (obj.ComputerID == item.ID)
                         namePC = item.NamePC;
                 var reportExcel = new MaketExcelGeneratorComp().Generate(obj);
-                File.WriteAllBytes("D:/PasportComp_" + namePC + DateTime.Now.ToString("_dd-MM-yyyy_hh-mm-ss") + ".xlsx", reportExcel);
-                MessageBox.Show("Звіт вдало вигружений у D:/PasportComp***.xlsx");
+                string path = "D:/PasportComp_" + namePC + DateTime.Now.ToString("_dd-MM-yyyy_hh-mm-ss") + ".xlsx";
+                File.WriteAllBytes(path, reportExcel);
+                MessageBox.Show("Звіт вдало вигружений у "+path);
+
+
+                //Excel.Application excel = new Excel.Application();
+                //Excel.Workbook ewb = excel.Workbooks._Open(path);
             }
             catch { }
         }
@@ -487,25 +529,33 @@ namespace AICO_Desktop
 
         private void Click_DeleteDevice(object sender, RoutedEventArgs e)
         {
-            Device newDevice = device.SelectedItem as Device;
-            context.Devices.Remove(newDevice);
-            context.SaveChanges();
-            device.ItemsSource = context.Devices.ToList();
-            model.Clear();
-            description1.Clear();
-            description2.Clear();
-            description3.Clear();
-            description4.Clear();
-            description5.Clear();
-            deviceENUM.ItemsSource = "";
-            logDevice.Foreground = Brushes.BlueViolet;
-            logDevice.Content = "Пристрій видалено";
+            try
+            {
+                Device newDevice = device.SelectedItem as Device;
+                context.Devices.Remove(newDevice);
+                context.SaveChanges();
+                device.ItemsSource = context.Devices.ToList();
+                model.Clear();
+                description1.Clear();
+                description2.Clear();
+                description3.Clear();
+                description4.Clear();
+                description5.Clear();
+                deviceENUM.ItemsSource = "";
+                logDevice.Foreground = Brushes.BlueViolet;
+                logDevice.Content = "Пристрій видалено";
+            }
+            catch
+            {
+                logDevice.Foreground = Brushes.Red;
+                logDevice.Content = "Видалити неможливо! Треба від'єднати в БД ";
+            }
         }
 
         private void MouseDuble_Device(object sender, MouseButtonEventArgs e)
         {
             logDevice.Content = "";
-            try
+            if (device.SelectedItem != null)
             {
                 Device editDevice = device.SelectedItem as Device;
                 model.Text = editDevice.Model;
@@ -516,12 +566,10 @@ namespace AICO_Desktop
                 description5.Text = editDevice.Description_5;
                 deviceENUM.SelectedItem = editDevice.Devices_ENUM.Name;
             }
-            catch (NullReferenceException ex)
+            else
             {
-                deviceENUM.SelectedItem = "";
-            }
-            catch
-            {
+                device_ENUM.ItemsSource = null;
+                device_ENUM.ItemsSource = context.Device_ENUMs.ToList();
                 device.ItemsSource = context.Devices.ToList();
                 model.Clear();
                 description1.Clear();
@@ -529,7 +577,7 @@ namespace AICO_Desktop
                 description3.Clear();
                 description4.Clear();
                 description5.Clear();
-                deviceENUM.ItemsSource = "";
+                deviceENUM.ItemsSource = null;
             }
         }
 
@@ -742,53 +790,56 @@ namespace AICO_Desktop
 
         private void Click_DeleteEmloye(object sender, RoutedEventArgs e)
         {
-            Employe newUser = employe.SelectedItem as Employe;
-            context.Employes.Remove(newUser);
-            context.SaveChanges();
-            employe.ItemsSource = context.Employes.ToList();
-            name.Clear();
-            work.Clear();
-            phone.Clear();
-            departmentsName.SelectedItem = "";
-            logUser.Foreground = Brushes.BlueViolet;
-            logUser.Content = "Працівника видалено";
-        }
-
-        private void MouseDuble_Employe(object sender, MouseButtonEventArgs e)
-        {
-            logUser.Content = "";
             try
             {
-                if (employe.SelectedItem != null)
-                {
-                    Employe editUser = employe.SelectedItem as Employe;
-                    name.Text = editUser.Name;
-                    work.Text = editUser.Work;
-                    phone.Text = editUser.Phone;
-                    departmentsName.SelectedItem = editUser.Departments.Name;
-                    if (editUser.Password == null)
-                    {
-                        oK.IsEnabled=true;
-                        fine.IsEnabled = false;
-                    }
-                    else
-                    {
-                        oK.IsEnabled = false;
-                        fine.IsEnabled = true;
-                    }
-                }
-            }
-            catch (NullReferenceException ex)
-            {
-                departmentsName.SelectedItem = "";
-            }
-            catch
-            {
+                Employe newUser = employe.SelectedItem as Employe;
+                context.Employes.Remove(newUser);
+                context.SaveChanges();
                 employe.ItemsSource = context.Employes.ToList();
                 name.Clear();
                 work.Clear();
                 phone.Clear();
                 departmentsName.SelectedItem = "";
+                logUser.Foreground = Brushes.BlueViolet;
+                logUser.Content = "Працівника видалено";
+            }
+            catch
+            {
+                logDevice.Foreground = Brushes.Red;
+                logDevice.Content = "Видалити неможливо! Треба від'єднати в БД ";
+            }
+        }
+
+        private void MouseDuble_Employe(object sender, MouseButtonEventArgs e)
+        {
+            logUser.Content = "";
+            if (employe.SelectedItem != null)
+            {
+                Employe editUser = employe.SelectedItem as Employe;
+                name.Text = editUser.Name;
+                work.Text = editUser.Work;
+                phone.Text = editUser.Phone;
+                departmentsName.SelectedItem = editUser.Departments.Name;
+                if (editUser.Password == null)
+                {
+                    oK.IsEnabled = true;
+                    fine.IsEnabled = false;
+                }
+                else
+                {
+                    oK.IsEnabled = false;
+                    fine.IsEnabled = true;
+                }
+            }
+            else
+            {
+                department.ItemsSource = null;
+                department.ItemsSource = context.Departments.ToList();
+                employe.ItemsSource = context.Employes.ToList();
+                name.Clear();
+                work.Clear();
+                phone.Clear();
+                departmentsName.SelectedItem = null;
             }
         }
 

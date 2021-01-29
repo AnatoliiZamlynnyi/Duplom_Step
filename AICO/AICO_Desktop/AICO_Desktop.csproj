@@ -5,6 +5,16 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>SysPc.ico</ApplicationIcon>
+    <Copyright>Anatolii Zamlynnyi</Copyright>
+    <Description>Accounting and inventory of computers and office equipment of the organization</Description>
+    <PackageReleaseNotes>Облік та інвентаризація комп'ютерів та оргтехніки організації</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/AnatoliiZamlynnyi/Duplom_Step.git</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Prefer32Bit>true</Prefer32Bit>
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
   <ItemGroup>

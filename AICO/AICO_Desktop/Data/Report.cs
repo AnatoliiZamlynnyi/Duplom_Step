@@ -190,6 +190,47 @@ namespace AICO_Desktop.View
                 {
                     range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
                 }
+
+                var sheet2 = package.Workbook.Worksheets.Add("Maket Reverse");
+                sheet2.Row(1).Height = 33;
+                sheet2.Column(1).Width = 1;
+                sheet2.Column(2).Width = 7;
+                sheet2.Column(3).Width = 9;
+                sheet2.Column(4).Width = 32;
+                sheet2.Column(5).Width = 14;
+                sheet2.Column(6).Width = 14;
+                sheet2.Column(7).Width = 9;
+                sheet2.Cells["B1:G1"].Merge = true;
+                sheet2.Cells["B1:G1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                sheet2.Cells["B1:G1"].Style.Font.Size = 12;
+                sheet2.Cells["B1:G1"].Style.Font.Bold = true;
+                sheet2.Cells["B1:G1"].Style.WrapText = true;
+                sheet2.Cells["B1"].Value = "Відомості про встановлення та видалення ПЗ, ремонт, технічному обслуговуванні, зміни програмної конфігурації ЕОМ";
+                sheet2.Cells["B2:G2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                sheet2.Cells["B2:G2"].Style.Font.Size = 12;
+                sheet2.Cells["B2:G2"].Style.Font.Bold = true;
+                sheet2.Cells["B2"].Value = "№ п/п";
+                sheet2.Cells["C2"].Value = "Дата";
+                sheet2.Cells["D2"].Value = "Дія";
+                sheet2.Cells["E2"].Value = "Підстава";
+                sheet2.Cells["F2"].Value = "Виконав, ПІБ";
+                sheet2.Cells["G2"].Value = "Підписи";
+                sheet2.Cells["B3:G3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                sheet2.Cells["B3:G3"].Style.Font.Size = 12;
+                sheet2.Cells["B3:G3"].Style.Font.Bold = true;
+                sheet2.Cells["B3"].Value = "1";
+                sheet2.Cells["C3"].Value = "2";
+                sheet2.Cells["D3"].Value = "3";
+                sheet2.Cells["E3"].Value = "4";
+                sheet2.Cells["F3"].Value = "5";
+                sheet2.Cells["G3"].Value = "6";
+                using (var range = sheet2.Cells[2, 2, 48, 7])
+                {
+                    range.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                    range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                    range.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                    range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                }
                 return package.GetAsByteArray();
             };
         }
