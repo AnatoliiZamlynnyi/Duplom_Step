@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 using OfficeOpenXml;
 using System.IO;
 using System.Security.Cryptography;
-using Excel=Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
 
 
 namespace AICO_Desktop
@@ -128,22 +128,7 @@ namespace AICO_Desktop
                 else
                     deviceENUM.ItemsSource = null;
             }
-            //if ((tcSample.SelectedItem as TabItem).Name == "three")
-            //{
-            //    device_ENUM.ItemsSource = context.Device_ENUMs.ToList();
-            //    if (device_ENUM.SelectedItem == null)
-            //        device.ItemsSource = context.Devices.ToList();
-            //    else
-            //    {
-            //        Device_ENUM editDevEnum = device_ENUM.SelectedItem as Device_ENUM;
-            //        device.ItemsSource = context.Devices.Where(x => x.Devices_ENUM.ID == editDevEnum.ID).ToList();
-            //    }
-            //    if (context.Device_ENUMs.Count() != 0)
-            //        deviceENUM.ItemsSource = context.Device_ENUMs.Select(x => x.Name).ToList();
-            //    else
-            //        deviceENUM.ItemsSource = null;
-            //}
-            if ((tcSample.SelectedItem as TabItem).Name == "four")
+            if ((tcSample.SelectedItem as TabItem).Name == "three")
             {
                 departmentA.ItemsSource = context.Departments.ToList();
                 if (departmentA.SelectedItem == null)
@@ -164,7 +149,7 @@ namespace AICO_Desktop
                 }
                 accounting.ItemsSource = context.Accountings.ToList();
             }
-            if ((tcSample.SelectedItem as TabItem).Name == "five")
+            if ((tcSample.SelectedItem as TabItem).Name == "four")
             {
                 reportA.ItemsSource = context.Accountings.ToList();
                 if (context.Departments.Count() != 0)
@@ -181,6 +166,7 @@ namespace AICO_Desktop
                     devSelect.ItemsSource = "";
             }
         }
+
         //=====================================================Звітність
         private void MouseUp_Report(object sender, MouseButtonEventArgs e)
         {
@@ -262,9 +248,7 @@ namespace AICO_Desktop
                 var reportExcel = new MaketExcelGeneratorComp().Generate(obj);
                 string path = "D:/PasportComp_" + namePC + DateTime.Now.ToString("_dd-MM-yyyy_hh-mm-ss") + ".xlsx";
                 File.WriteAllBytes(path, reportExcel);
-                MessageBox.Show("Звіт вдало вигружений у "+path);
-
-
+                MessageBox.Show("Звіт вдало вигружений у " + path);
                 //Excel.Application excel = new Excel.Application();
                 //Excel.Workbook ewb = excel.Workbooks._Open(path);
             }
@@ -461,6 +445,7 @@ namespace AICO_Desktop
                 device_ENUMA.ItemsSource = context.Device_ENUMs.ToList();
             }
         }
+
         //=====================================================Оргтехніка
         private void Click_AddDevice(object sender, RoutedEventArgs e)
         {
@@ -655,6 +640,7 @@ namespace AICO_Desktop
                 devENUM_Text.Clear();
             }
         }
+        
         //=====================================================Відділи та працівники
         public static string CodingGetHash(string password)
         {
@@ -878,6 +864,7 @@ namespace AICO_Desktop
             logUser.Foreground = Brushes.Green;
             logUser.Content = "Зміни внесено успішно";
         }
+
         private void Click_DeleteDep(object sender, RoutedEventArgs e)
         {
             Department newDep = department.SelectedItem as Department;
@@ -888,6 +875,7 @@ namespace AICO_Desktop
             logUser.Foreground = Brushes.BlueViolet;
             logUser.Content = "Відділ видалено";
         }
+
         private void MouseUp_Dep(object sender, MouseButtonEventArgs e)
         {
             logUser.Content = "";
