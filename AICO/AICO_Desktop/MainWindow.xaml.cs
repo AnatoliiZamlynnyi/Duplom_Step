@@ -20,27 +20,8 @@ namespace AICO_Desktop
             startLogo.Show();
             InitializeComponent();
             context = new EfContext();
-            context.Database.CreateIfNotExists();
-            Employe user = context.Employes.FirstOrDefault(x => x.Name == "admin");
-            if (user == null)
-            {
-                Department dep = new Department
-                {
-                    Name = "IT"
-                };
-                context.Departments.Add(dep);
-                context.SaveChanges();
-                Employe newUser = new Employe
-                {
-                    Name = "Admin",
-                    Password = CodingGetHash("123456"),
-                    Work = "IT-Inginer",
-                    Phone = "+380671234567",
-                    DepartmentID = dep.ID
-                };
-                context.Employes.Add(newUser);
-                context.SaveChanges();
-            }
+            Start start = new Start();
+            start.StartFirst();
             myComp = new Computer();
             myComp.InfoSystem();
             userPC.Content = "Поточне ПК. Користувач: " + Environment.UserName;

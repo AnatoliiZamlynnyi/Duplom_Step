@@ -44,14 +44,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bin\Debug\netcoreapp3.1\configDB.cfg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="View\aico.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="bin\Debug\netcoreapp3.1\" />
     <Folder Include="Image\" />
   </ItemGroup>
 

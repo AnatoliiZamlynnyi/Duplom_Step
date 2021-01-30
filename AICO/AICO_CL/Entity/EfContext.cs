@@ -12,7 +12,7 @@ namespace AICO_CL.Entity
     public class EfContext : DbContext
     {
         static SqlConnectionStringBuilder connectDB = new SqlConnectionStringBuilder();
-        static string[] file = File.ReadAllLines(@"configDB.cfg");
+        static string[] file = File.ReadAllLines(PathString());
         public EfContext() : base(ConnectServer(file)) { }
         public DbSet<Accounting> Accountings { get; set; }
         public DbSet<Computer> Computers { get; set; }
@@ -20,6 +20,13 @@ namespace AICO_CL.Entity
         public DbSet<Employe> Employes { get; set; }
         public DbSet<Device_ENUM> Device_ENUMs { get; set; }
         public DbSet<Device> Devices { get; set; }
+        static private string PathString()
+        {
+            string pach = @"./../../../../configDB.cfg";
+            if (!File.Exists(pach))
+                pach = @"configDB.cfg";
+            return pach;
+        }
         static private string ConnectServer(string[] file)
         {
             connectDB.DataSource = file[0].Substring(14);
