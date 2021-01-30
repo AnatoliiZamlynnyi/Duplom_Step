@@ -19,7 +19,8 @@ using OfficeOpenXml;
 using System.IO;
 using System.Security.Cryptography;
 using Excel = Microsoft.Office.Interop.Excel;
-
+using System.Diagnostics;
+using System.Threading;
 
 namespace AICO_Desktop
 {
@@ -151,6 +152,9 @@ namespace AICO_Desktop
             }
             if ((tcSample.SelectedItem as TabItem).Name == "four")
             {
+                employeA.ItemsSource = context.Employes.ToList();
+                computerA.ItemsSource = context.Computers.ToList();
+                deviceA.ItemsSource = context.Devices.ToList();
                 reportA.ItemsSource = context.Accountings.ToList();
                 if (context.Departments.Count() != 0)
                     depSelect.ItemsSource = context.Departments.Select(x => x.Name).ToList();
@@ -193,8 +197,11 @@ namespace AICO_Desktop
                         obj.ID = item.ID;
                 }
                 var reportExcel = new MaketExcelGeneratorDevice().Generate(obj);
-                File.WriteAllBytes("D:/ReportDevice_" + DateTime.Now.ToString("dd-MM-yyyy_hh-mm-ss") + ".xlsx", reportExcel);
-                MessageBox.Show("Звіт вдало вигружений у D:/ReportDevice***.xlsx");
+                string path = "D:/ReportDevice_" + DateTime.Now.ToString("ddMMyyyy_hhmmss") + ".xlsx";
+                File.WriteAllBytes(path, reportExcel);
+                MessageBox.Show("Звіт вдало вигружений у " + path);
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+
             }
             catch { }
         }
@@ -211,8 +218,10 @@ namespace AICO_Desktop
                         obj.ID = item.ID;
                 }
                 var reportExcel = new MaketExcelGeneratorDepartment().Generate(obj);
-                File.WriteAllBytes("D:/ReportDepartment_" + DateTime.Now.ToString("dd-MM-yyyy_hh-mm-ss") + ".xlsx", reportExcel);
-                MessageBox.Show("Звіт вдало вигружений у D:/ReportDepartment***.xlsx");
+                string path = "D:/ReportDepartment_" + DateTime.Now.ToString("ddMMyyyy_hhmmss") + ".xlsx";
+                File.WriteAllBytes(path, reportExcel);
+                MessageBox.Show("Звіт вдало вигружений у " + path);
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
             }
             catch { }
         }
@@ -229,8 +238,10 @@ namespace AICO_Desktop
                         obj.ID = item.ID;
                 }
                 var reportExcel = new MaketExcelGeneratorEmploye().Generate(obj);
-                File.WriteAllBytes("D:/ReportEmploye_" + DateTime.Now.ToString("dd-MM-yyyy_hh-mm-ss") + ".xlsx", reportExcel);
-                MessageBox.Show("Звіт вдало вигружений у D:/ReportEmploye***.xlsx");
+                string path = "D:/ReportEmploye_" + DateTime.Now.ToString("ddMMyyyy_hhmmss") + ".xlsx";
+                File.WriteAllBytes(path, reportExcel);
+                MessageBox.Show("Звіт вдало вигружений у " + path);
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
             }
             catch { }
         }
@@ -246,11 +257,10 @@ namespace AICO_Desktop
                     if (obj.ComputerID == item.ID)
                         namePC = item.NamePC;
                 var reportExcel = new MaketExcelGeneratorComp().Generate(obj);
-                string path = "D:/PasportComp_" + namePC + DateTime.Now.ToString("_dd-MM-yyyy_hh-mm-ss") + ".xlsx";
+                string path = "D:/PasportComp_" + namePC + DateTime.Now.ToString("_ddMMyyyy_hhmmss") + ".xlsx";
                 File.WriteAllBytes(path, reportExcel);
                 MessageBox.Show("Звіт вдало вигружений у " + path);
-                //Excel.Application excel = new Excel.Application();
-                //Excel.Workbook ewb = excel.Workbooks._Open(path);
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
             }
             catch { }
         }
@@ -260,10 +270,13 @@ namespace AICO_Desktop
             try
             {
                 var reportExcel = new MaketExcelGeneratorAll().Generate();
-                File.WriteAllBytes("D:/ReportAll_" + DateTime.Now.ToString("dd-MM-yyyy_hh-mm-ss") + ".xlsx", reportExcel);
+                string path = "D:/ReportAll_" + DateTime.Now.ToString("ddMMyyyy_hhmmss") + ".xlsx";
+                File.WriteAllBytes(path, reportExcel);
+                MessageBox.Show("Звіт вдало вигружений у " + path);
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+
             }
             catch { }
-            MessageBox.Show("Звіт вдало вигружений у D:/ReportAll***.xlsx");
         }
 
         //=========================Облік техніки
@@ -640,7 +653,7 @@ namespace AICO_Desktop
                 devENUM_Text.Clear();
             }
         }
-        
+
         //=====================================================Відділи та працівники
         public static string CodingGetHash(string password)
         {
