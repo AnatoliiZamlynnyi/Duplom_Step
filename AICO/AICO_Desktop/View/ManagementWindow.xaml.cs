@@ -128,6 +128,7 @@ namespace AICO_Desktop
                     deviceENUM.ItemsSource = context.Device_ENUMs.Select(x => x.Name).ToList();
                 else
                     deviceENUM.ItemsSource = null;
+                ScrollViewer.SetVerticalScrollBarVisibility(this.device, ScrollBarVisibility.Visible);
             }
             if ((tcSample.SelectedItem as TabItem).Name == "three")
             {

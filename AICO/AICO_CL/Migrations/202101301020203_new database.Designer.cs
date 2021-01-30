@@ -7,13 +7,13 @@ namespace AICO_CL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class CreateDatabase : IMigrationMetadata
+    public sealed partial class newdatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newdatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202101131812025_CreateDatabase"; }
+            get { return "202101301020203_new database"; }
         }
         
         string IMigrationMetadata.Source

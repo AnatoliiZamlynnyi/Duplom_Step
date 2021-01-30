@@ -86,8 +86,8 @@
             <ScrollViewer>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*"></RowDefinition>
-                        <RowDefinition Height="0.5*"></RowDefinition>
+                        <RowDefinition Height="450"></RowDefinition>
+                        <RowDefinition Height="450"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.5*"></ColumnDefinition>
@@ -95,13 +95,13 @@
                         <ColumnDefinition Width="0.8*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Content="Відділи підприємства:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="department" Grid.Row="0" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Dep" MouseUp="MouseUp_Dep">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="420" Name="department" Grid.Row="0" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Dep" MouseUp="MouseUp_Dep">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Підрозділ" Binding="{Binding Name}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Content="Працівники підприємства:" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="employe" Grid.Row="0" Grid.Column="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Employe">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="420" Name="employe" Grid.Row="0" Grid.Column="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Employe">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Працівник" Binding="{Binding Name}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
@@ -152,13 +152,13 @@
                         </StackPanel>
                     </StackPanel>
                     <Label Content="Тип пристрою:" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" ></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="device_ENUM" Grid.Row="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_DeviceENUM" MouseUp="MouseUp_DeviceENUM">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="420" Name="device_ENUM" Grid.Row="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_DeviceENUM" MouseUp="MouseUp_DeviceENUM">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Тип пристрою" Binding="{Binding Name}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Content="Пристрій:" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="device" Grid.Row="1" Grid.Column="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Device">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="420" Name="device" Grid.Row="1" Grid.Column="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Device">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Модель" Binding="{Binding Model}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Опис 1" Binding="{Binding Description_1}"></DataGridTextColumn>
@@ -213,9 +213,8 @@
             <ScrollViewer>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*"></RowDefinition>
-                        <RowDefinition Height="0.5*"></RowDefinition>
-                        <RowDefinition Height="0.2*"></RowDefinition>
+                        <RowDefinition Height="450"></RowDefinition>
+                        <RowDefinition Height="300"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -225,13 +224,13 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Content="Відділи підприємства:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="departmentA" Margin="3,25,3,0" MouseUp="MouseUp_DepartmentA">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="410" Name="departmentA" Margin="3,25,3,0" MouseUp="MouseUp_DepartmentA">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Підрозділ" Binding="{Binding Name}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Content="Працівники підприємства:" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="employeA" Grid.Column="1" Margin="3,25,3,0" MouseUp="MouseUp_User">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="410" Name="employeA" Grid.Column="1" Margin="3,25,3,0" MouseUp="MouseUp_User">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Працівник" Binding="{Binding Name}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
@@ -239,7 +238,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Content="Комп'ютер:" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="computerA" Grid.Column="2" Margin="3,25,3,0" MouseUp="MouseUp_Comp">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="410" Name="computerA" Grid.Column="2" Margin="3,25,3,0" MouseUp="MouseUp_Comp">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Ім'я користувача" Binding="{Binding UserNamePC}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Ім'я ПК" Binding="{Binding NamePC}"></DataGridTextColumn>
@@ -253,13 +252,13 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Content="Тип пристрою:" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="device_ENUMA" Grid.Column="3" Margin="3,25,3,0" MouseUp="MouseUp_DeviceENUMA">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="410" Name="device_ENUMA" Grid.Column="3" Margin="3,25,3,0" MouseUp="MouseUp_DeviceENUMA">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Тип пристрою" Binding="{Binding Name}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Content="Пристрій:" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="deviceA" Grid.Column="4" Margin="3,25,3,0" MouseUp="MouseUp_Dev">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="410" Name="deviceA" Grid.Column="4" Margin="3,25,3,0" MouseUp="MouseUp_Dev">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Модель" Binding="{Binding Model}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Опис 1" Binding="{Binding Description_1}"></DataGridTextColumn>
@@ -269,15 +268,15 @@
                             <DataGridTextColumn Header="Опис 5" Binding="{Binding Description_5}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Label Content="Облік техніки:" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="accounting" Grid.Row="1" Grid.ColumnSpan="5" Margin="3,25,3,0"  MouseUp="MouseUp_Accounting">
+                    <Label Content="Облік техніки:" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="260" Name="accounting" Grid.Row="1" Grid.ColumnSpan="2" Margin="3,3,3,0"  MouseUp="MouseUp_Accounting">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Працівник" Binding="{Binding Employes}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Комп'ютер" Binding="{Binding Computers}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Пристрій" Binding="{Binding Devices}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <StackPanel Grid.Row="2">
+                    <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
                         <StackPanel>
                             <Label Content="Користувач"></Label>
                             <TextBox Name="user" Width="200" Height="20" HorizontalAlignment="Left"></TextBox>
@@ -291,7 +290,7 @@
                             <TextBox Name="dev" Width="200" Height="20" HorizontalAlignment="Left"></TextBox>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="1">
+                    <StackPanel Grid.Row="1" Grid.Column="3" VerticalAlignment="Center">
                         <Button Content="Додати" Margin="5" Click="Click_AddAccounting"></Button>
                         <Button Content="Змінити" Margin="5" Click="Click_EditAccounting"></Button>
                         <Button Content="Видалити" Margin="5" Click="Click_DeleteAccounting"></Button>
@@ -304,9 +303,7 @@
             <ScrollViewer>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*"></RowDefinition>
-                        <RowDefinition Height="0.5*"></RowDefinition>
-                        <RowDefinition Height="0.2*"></RowDefinition>
+                        <RowDefinition Height="700"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -315,18 +312,21 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Облік комп'ютерної техніки:" HorizontalAlignment="Center" Grid.ColumnSpan="2"  VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" Name="reportA" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="3,25,3,3" MouseUp="MouseUp_Report">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Працівник" Binding="{Binding Employes}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Комп'ютер" Binding="{Binding Computers}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Пристрій" Binding="{Binding Devices}"></DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <Button Margin="3" Grid.Row="2" Grid.ColumnSpan="2" Click="Click_LoadAllToExcel">Вигрузити</Button>
-                    <StackPanel Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="2">
-                        <Label Content="Облік комп'ютерів техніки:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                        <DataGrid AutoGenerateColumns="False" Name="reportCompA" Margin="3,5,3,3" Height="600">
+                    <StackPanel Grid.ColumnSpan="2" Margin="3">
+                        <Label Content="Облік комп'ютерної техніки:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                        <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" Margin="0,3,0,3" Height="620" Name="reportA" MouseUp="MouseUp_Report">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Працівник" Binding="{Binding Employes}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Комп'ютер" Binding="{Binding Computers}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Пристрій" Binding="{Binding Devices}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Click="Click_LoadAllToExcel" Height="40">Вигрузити</Button>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Grid.ColumnSpan="3" Margin="3">
+                        <Label Content="Комп'ютер:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                        <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Name="reportCompA" Margin="0,3,0,3" Height="520">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Ім'я користувача" Binding="{Binding UserNamePC}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Ім'я ПК" Binding="{Binding NamePC}"></DataGridTextColumn>
@@ -339,22 +339,31 @@
                                 <DataGridTextColumn Header="Розрадність ОС" Binding="{Binding BitOperating}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Height="35" Margin="3" Click="Click_LoadCompToExcel">Вигрузити Паспорт ПК</Button>
-                    </StackPanel>
-                    <StackPanel Grid.Column="2" Grid.Row="2" Margin="3,0,3,0" VerticalAlignment="Center">
-                        <Label Content="Підрозділ:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                        <ComboBox Name="depSelect" Height="30" VerticalAlignment="Top"></ComboBox>
-                        <Button Height="30"  Margin="0,3,0,3" Click="Click_LoadDepartmentToExcel">Вигрузити по підрозділу</Button>
-                    </StackPanel>
-                    <StackPanel Grid.Column="3" Grid.Row="2" Margin="3,0,3,0" VerticalAlignment="Center">
-                        <Label Content="Працівник:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                        <ComboBox Name="empSelect" Height="30" VerticalAlignment="Top"></ComboBox>
-                        <Button Height="30"  Margin="0,3,0,3" Click="Click_LoadEmployeToExcel">Вигрузити по працівнику</Button>
-                    </StackPanel>
-                    <StackPanel Grid.Column="4" Grid.Row="2" Margin="3,0,3,0" VerticalAlignment="Center">
-                        <Label Content="Пристрій:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                        <ComboBox Name="devSelect" Height="30" VerticalAlignment="Top"></ComboBox>
-                        <Button Height="30" Margin="0,3,0,3" Click="Click_LoadDeviceToExcel">Вигрузити по пристроям</Button>
+                        <Button Height="40" Click="Click_LoadCompToExcel">Вигрузити Паспорт ПК</Button>
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                            <StackPanel Margin="0,3,0,3" VerticalAlignment="Center">
+                                <Label Content="Підрозділ:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                                <ComboBox Name="depSelect" VerticalAlignment="Top"></ComboBox>
+                                <Button Height="40"  Margin="0,3,0,3" Click="Click_LoadDepartmentToExcel">Вигрузити по підрозділу</Button>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="0,3,0,3" VerticalAlignment="Center">
+                                <Label Content="Працівник:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                                <ComboBox Name="empSelect" VerticalAlignment="Top"></ComboBox>
+                                <Button Height="40"  Margin="0,3,0,3" Click="Click_LoadEmployeToExcel">Вигрузити по працівнику</Button>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Margin="0,3,0,3" VerticalAlignment="Center">
+                                <Label Content="Пристрій:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                                <ComboBox Name="devSelect" VerticalAlignment="Top"></ComboBox>
+                                <Button Height="40" Margin="0,3,0,3" Click="Click_LoadDeviceToExcel">Вигрузити по пристроям</Button>
+                            </StackPanel>
+                            </Grid>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </ScrollViewer>
