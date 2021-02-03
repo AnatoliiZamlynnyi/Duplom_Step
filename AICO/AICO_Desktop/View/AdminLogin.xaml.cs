@@ -40,10 +40,10 @@ namespace AICO_Desktop
 
         private void Click_EnterAdmin(object sender, RoutedEventArgs e)
         {
-            //string log = login.Text.ToLower();
-            //string password = CodingGetHash(pass.Password);
-            string log = "admin";
-            string password = CodingGetHash("123456");
+            string log = login.Text.ToLower();
+            string password = CodingGetHash(pass.Password);
+            //string log = "admin";
+            //string password = CodingGetHash("123456");
 
             user = context.Employes.FirstOrDefault(x => x.Name.ToLower() == log && x.Password == password);
             if (user == null)

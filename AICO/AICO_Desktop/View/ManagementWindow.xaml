@@ -95,13 +95,13 @@
                         <ColumnDefinition Width="0.8*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Content="Відділи підприємства:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="420" Name="department" Grid.Row="0" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Dep" MouseUp="MouseUp_Dep">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="425" Name="department" Grid.Row="0" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Dep" MouseUp="MouseUp_Dep">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Підрозділ" Binding="{Binding Name}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Content="Працівники підприємства:" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="420" Name="employe" Grid.Row="0" Grid.Column="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Employe">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="425" Name="employe" Grid.Row="0" Grid.Column="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Employe">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Працівник" Binding="{Binding Name}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
@@ -147,18 +147,15 @@
                                 <Button IsEnabled="False" Name="fine" Content="Скасувати адмінправа" Height="20" Width="170" Click="Click_DelAdministrator"></Button>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel>
-                            <Label Name="logUser"></Label>
-                        </StackPanel>
                     </StackPanel>
                     <Label Content="Тип пристрою:" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" ></Label>
-                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="420" Name="device_ENUM" Grid.Row="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_DeviceENUM" MouseUp="MouseUp_DeviceENUM">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="425" Name="device_ENUM" Grid.Row="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_DeviceENUM" MouseUp="MouseUp_DeviceENUM">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Тип пристрою" Binding="{Binding Name}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Content="Пристрій:" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="420" Name="device" Grid.Row="1" Grid.Column="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Device">
+                    <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="425" Name="device" Grid.Row="1" Grid.Column="1" Margin="3,25,3,0" MouseDoubleClick="MouseDuble_Device">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Модель" Binding="{Binding Model}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Опис 1" Binding="{Binding Description_1}"></DataGridTextColumn>
@@ -203,8 +200,9 @@
                             <Button Name="deleteDevice" Content="Видалення пристрою" Height="20" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Click_DeleteDevice"></Button>
                         </StackPanel>
                         <StackPanel>
-                            <Label Name="logDevice"></Label>
+                            <Label Name="logDirectory"></Label>
                         </StackPanel>
+
                     </StackPanel>
                 </Grid>
             </ScrollViewer>
@@ -303,7 +301,7 @@
             <ScrollViewer>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="700"></RowDefinition>
+                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -312,21 +310,19 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.ColumnSpan="2" Margin="3">
+                    <StackPanel Margin="3">
                         <Label Content="Облік комп'ютерної техніки:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                        <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" Margin="0,3,0,3" Height="620" Name="reportA" MouseUp="MouseUp_Report">
+                        <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" Margin="0,3,0,3" Name="reportA" MouseUp="MouseUp_Report">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Працівник" Binding="{Binding Employes}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Комп'ютер" Binding="{Binding Computers}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Пристрій" Binding="{Binding Devices}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Click="Click_LoadAllToExcel" Height="40">Вигрузити</Button>
                     </StackPanel>
-
-                    <StackPanel Grid.Column="2" Grid.ColumnSpan="3" Margin="3">
+                    <StackPanel Grid.Column="1" Grid.ColumnSpan="4" Margin="3">
                         <Label Content="Комп'ютер:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                        <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Name="reportCompA" Margin="0,3,0,3" Height="520">
+                        <DataGrid AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Name="reportCompA" Margin="0,3,0,3" Height="600">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Ім'я користувача" Binding="{Binding UserNamePC}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Ім'я ПК" Binding="{Binding NamePC}"></DataGridTextColumn>
@@ -339,7 +335,20 @@
                                 <DataGridTextColumn Header="Розрадність ОС" Binding="{Binding BitOperating}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Height="40" Click="Click_LoadCompToExcel">Вигрузити Паспорт ПК</Button>
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="3">
+                                    <Button Click="Click_LoadAllToExcel" Height="40">Вигрузити увесь перелік обладнання</Button>
+                                </StackPanel>
+                                <StackPanel Margin="3" Grid.Column="2">
+                                    <Button Height="40" Click="Click_LoadCompToExcel">Вигрузити Паспорт ПК</Button>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
                         <StackPanel>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -347,21 +356,21 @@
                                     <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                            <StackPanel Margin="0,3,0,3" VerticalAlignment="Center">
-                                <Label Content="Підрозділ:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                                <ComboBox Name="depSelect" VerticalAlignment="Top"></ComboBox>
-                                <Button Height="40"  Margin="0,3,0,3" Click="Click_LoadDepartmentToExcel">Вигрузити по підрозділу</Button>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1" Margin="0,3,0,3" VerticalAlignment="Center">
-                                <Label Content="Працівник:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                                <ComboBox Name="empSelect" VerticalAlignment="Top"></ComboBox>
-                                <Button Height="40"  Margin="0,3,0,3" Click="Click_LoadEmployeToExcel">Вигрузити по працівнику</Button>
-                            </StackPanel>
-                            <StackPanel Grid.Column="2" Margin="0,3,0,3" VerticalAlignment="Center">
-                                <Label Content="Пристрій:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                                <ComboBox Name="devSelect" VerticalAlignment="Top"></ComboBox>
-                                <Button Height="40" Margin="0,3,0,3" Click="Click_LoadDeviceToExcel">Вигрузити по пристроям</Button>
-                            </StackPanel>
+                                <StackPanel Margin="3" VerticalAlignment="Center">
+                                    <Label Content="Підрозділ:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                                    <ComboBox Name="depSelect" VerticalAlignment="Top"></ComboBox>
+                                    <Button Height="40"  Margin="0,3,0,3" Click="Click_LoadDepartmentToExcel">Вигрузити по підрозділу</Button>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="3" VerticalAlignment="Center">
+                                    <Label Content="Працівник:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                                    <ComboBox Name="empSelect" VerticalAlignment="Top"></ComboBox>
+                                    <Button Height="40"  Margin="0,3,0,3" Click="Click_LoadEmployeToExcel">Вигрузити по працівнику</Button>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Margin="3" VerticalAlignment="Center">
+                                    <Label Content="Пристрій:" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                                    <ComboBox Name="devSelect" VerticalAlignment="Top"></ComboBox>
+                                    <Button Height="40" Margin="0,3,0,3" Click="Click_LoadDeviceToExcel">Вигрузити по пристроям</Button>
+                                </StackPanel>
                             </Grid>
                         </StackPanel>
                     </StackPanel>

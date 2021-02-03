@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="5.5.1" />
+    <PackageReference Include="WindowsAPICodePack" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
