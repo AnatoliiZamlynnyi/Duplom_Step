@@ -109,7 +109,7 @@ namespace AICO_Desktop.View
     public class MaketExcelGeneratorComp
     {
         EfContext context = new EfContext();
-        public byte[] Generate(Accounting obj)
+        public byte[] Generate(Computer obj)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (var package = new ExcelPackage())
@@ -126,20 +126,23 @@ namespace AICO_Desktop.View
                 sheet.Cells["B2"].Value = "Підрозділ: ";
                 sheet.Cells["C2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
                 Employe empl = new Employe();
-                foreach (var item in context.Employes.ToList())
+                Computer comp = new Computer();
+                foreach (var item in reportAll)
                 {
-                    if (item.ID == obj.EmployeID)
+                    if (item.ComputerID == obj.ID)
                     {
-                        foreach (var d in context.Departments.ToList())
-                            if (d.ID == item.DepartmentID)
-                                sheet.Cells["C2"].Value = d.Name;
+                        comp = obj;
+                        empl = context.Employes.First(x => x.ID == item.EmployeID);
                     }
                 }
+                foreach (var d in context.Departments.ToList())
+                    if (d.ID == empl.DepartmentID)
+                        sheet.Cells["C2"].Value = d.Name;
                 sheet.Cells["B3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
                 sheet.Cells["B3"].Style.Font.Bold = true;
                 sheet.Cells["B3"].Value = "Працівник: ";
                 sheet.Cells["C3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                sheet.Cells["C3"].Value = obj.Employes.Name;
+                sheet.Cells["C3"].Value = empl.Name;
                 sheet.Cells["B5:B11"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 sheet.Cells["B5:B11"].Style.Font.Bold = true;
                 sheet.Cells["B5"].Value = "№ п/п";
@@ -161,12 +164,6 @@ namespace AICO_Desktop.View
                 sheet.Cells["C9"].Value = "Оперативна пам'ять";
                 sheet.Cells["C10"].Value = "Жорсткий диск";
                 sheet.Cells["C11"].Value = "Операційна система";
-                Computer comp = new Computer();
-                foreach (var item in context.Computers.ToList())
-                {
-                    if (item.ID == obj.ComputerID)
-                        comp = item;
-                }
                 sheet.Cells["D6:D11"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
                 sheet.Cells["D6"].Value = comp.NamePC;
                 sheet.Cells["D7"].Value = comp.CPUpc;
@@ -177,7 +174,7 @@ namespace AICO_Desktop.View
                 sheet.Cells["B16:D16"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 sheet.Cells["B16"].Value = "(Дата)";
                 sheet.Cells["C16"].Value = "(Підпис)";
-                sheet.Cells["D16"].Value = obj.Employes.Name;
+                sheet.Cells["D16"].Value = empl.Name;
                 sheet.Cells.AutoFitColumns();
                 using (var range = sheet.Cells[5, 2, 11, 4])
                 {
@@ -190,7 +187,6 @@ namespace AICO_Desktop.View
                 {
                     range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
                 }
-
                 var sheet2 = package.Workbook.Worksheets.Add("Maket Reverse");
                 sheet2.Row(1).Height = 33;
                 sheet2.Column(1).Width = 1;

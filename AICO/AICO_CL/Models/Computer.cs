@@ -18,51 +18,43 @@ namespace AICO_CL.Models
         public string RAMpc { get; set; }
         public string HDDpc { get; set; }
         public string Video { get; set; }
-       public override string ToString()
+        public override string ToString()
         {
             return $"{NamePC}";
         }
         public void InfoSystem()
         {
             UserNamePC = Environment.UserName;
-
             NamePC = Environment.MachineName;
-
             var os = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem")
                 .Get()
                 .Cast<ManagementObject>()
                 .First();
             OSVersion = (string)os["Caption"];
-
             if (Environment.Is64BitOperatingSystem == true)
                 BitOperating = "x64";
             else
                 BitOperating = "x86";
-
             var motherboard = new ManagementObjectSearcher("SELECT * FROM Win32_BaseBoard")
                 .Get()
                 .Cast<ManagementObject>()
                 .First();
             Motherboard = (string)motherboard["Manufacturer"] + " " + (string)motherboard["Product"];
-
             var cpu = new ManagementObjectSearcher("SELECT * FROM Win32_Processor")
                .Get()
                .Cast<ManagementObject>()
                .First();
             CPUpc = (string)cpu["Name"];
-
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem");
             ManagementObjectCollection results = searcher.Get();
             foreach (ManagementObject result in results)
                 RAMpc = Convert.ToString(Math.Round(Convert.ToDecimal(result["TotalVisibleMemorySize"]) / (1024 * 1024))) + " Gb.";
-
             var hdd = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive")
                 .Get()
                 .Cast<ManagementObject>()
                 .First();
             int size = (int)(Convert.ToDecimal(hdd["Size"]) / (1024 * 1024 * 1000));
             HDDpc = (string)hdd["Model"] + " - " + size.ToString() + " Gb.";
-
             var video = new ManagementObjectSearcher("SELECT * FROM Win32_VideoController")
            .Get()
            .Cast<ManagementObject>()
@@ -72,7 +64,6 @@ namespace AICO_CL.Models
 
         public void ShowPC()
         {
-
             Console.WriteLine("My Computer");
             Console.WriteLine("UserName PC: " + UserNamePC);
             Console.WriteLine("Name PC: " + NamePC);

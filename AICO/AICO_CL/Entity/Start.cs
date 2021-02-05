@@ -14,7 +14,7 @@ namespace AICO_CL.Entity
         {
             context = new EfContext();
             context.Database.CreateIfNotExists();
-           int count = context.Employes.Count();
+            int count = context.Employes.Count();
             if (count == 0)
             {
                 Department dep = new Department

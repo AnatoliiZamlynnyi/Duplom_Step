@@ -977,15 +977,11 @@ namespace AICO_Desktop
         {
             try
             {
-                Accounting obj = new Accounting();
-                obj = reportA.SelectedItem as Accounting;
-                string namePC = "";
-                foreach (var item in context.Computers.ToList())
-                    if (obj.ComputerID == item.ID)
-                        namePC = item.NamePC;
+                Computer obj = new Computer();
+                obj = reportCompA.SelectedItem as Computer;
                 var reportExcel = new MaketExcelGeneratorComp().Generate(obj);
                 CommonSaveFileDialog dialog = new CommonSaveFileDialog();
-                dialog.DefaultFileName = "PasportComp_" + namePC + DateTime.Now.ToString("_ddMMyyyy_hhmmss");
+                dialog.DefaultFileName = "PasportComp_" + obj.NamePC + DateTime.Now.ToString("_ddMMyyyy_hhmmss");
                 dialog.DefaultExtension = "xlsx";
                 dialog.Filters.Add(new CommonFileDialogFilter("Excel Documents", "*.xlsx"));
                 if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
