@@ -55,8 +55,11 @@ namespace AICO_Desktop
                 _lb7.Foreground = newComp.HDDpc == myComp.HDDpc ? Brushes.Black : Brushes.Red;
                 _lb8.Content = newComp.Video;
                 _lb8.Foreground = newComp.Video == myComp.Video ? Brushes.Black : Brushes.Red;
+                //var tmp = context.Accountings.First(x => x.ComputerID == newComp.ID).EmployeID;
+                //var us = context.Accountings.Where(x => x.EmployeID == tmp);
+                //devUser.ItemsSource = us;
             }
-            startLogo.Close();
+            startLogo.Close();            
         }
         public static string CodingGetHash(string password)
         {
