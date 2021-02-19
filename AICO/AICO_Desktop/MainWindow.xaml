@@ -10,9 +10,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.15*"></RowDefinition>
-            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="*" ></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="135"></ColumnDefinition>
@@ -26,7 +26,7 @@
         <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center">
             <Label  FontSize="16" FontWeight="Bold" Name="userPC"></Label>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left">
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Left">
             <Label FontWeight="Bold">Ім'я користувача:</Label>
             <Label FontWeight="Bold">Ім'я комп'ютера:</Label>
             <Label FontWeight="Bold">Операційна система:</Label>
@@ -37,7 +37,7 @@
             <Label FontWeight="Bold">Жорсткий диск:</Label>
             <Label FontWeight="Bold">Відеокарта:</Label>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left">
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Left">
             <Label Name="lb0"></Label>
             <Label Name="lb1"></Label>
             <Label Name="lb2"></Label>
@@ -51,7 +51,7 @@
         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center">
             <Label  FontSize="16" FontWeight="Bold" Name="userPCDB"></Label>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left">
+        <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Left">
             <Label  FontWeight="Bold">Ім'я користувача:</Label>
             <Label  FontWeight="Bold">Ім'я комп'ютера:</Label>
             <Label  FontWeight="Bold">Операційна система:</Label>
@@ -62,7 +62,7 @@
             <Label  FontWeight="Bold">Жорсткий диск:</Label>
             <Label  FontWeight="Bold">Відеокарта:</Label>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left">
+        <StackPanel Orientation="Vertical" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Left">
             <Label Name="_lb0"></Label>
             <Label Name="_lb1"></Label>
             <Label Name="_lb2"></Label>
