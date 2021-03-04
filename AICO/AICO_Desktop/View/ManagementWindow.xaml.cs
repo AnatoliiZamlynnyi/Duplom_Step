@@ -372,7 +372,7 @@ namespace AICO_Desktop
         {
             if (name.Text != "")
             {
-                var tmpUser = context.Employes.First(x => x.Name == name.Text);
+                var tmpUser = context.Employes.FirstOrDefault(x => x.Name == name.Text);
                 if (tmpUser == null)
                 {
                     Employe newUser = new Employe();
